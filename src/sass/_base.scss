@@ -1,85 +1,42 @@
-@import './main';
+@import url('https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;700&family=Roboto+Slab:wght@400;700&family=Space+Mono:wght@400;700&display=swap');
+
+// COLORS
+$bg_color_light: hsl(234, 35%, 18%);
+$bg_color_dark: hsl(234deg, 39%, 14%);
+$bg_color_lighter: hsl(234deg, 39%, 29%);
+$gray-color: hsl(227deg, 100%, 92%);
+$gray-color-100: hsl(227deg 12% 96%);
+
+$clr-nt-lightest: hsl(0deg, 0%, 100%);
+$clr-nt-light: hsl(229deg, 52%, 96%);
+$clr-accent-1: hsl(0deg, 91%, 71%);
+$clr-accent-2: hsl(182deg, 91%, 71%);
+$clr-accent-3: hsl(284deg, 89%, 74%);
+
+// FONTS
+$ff-option-1: 'Kumbh Sans', sans-serif;
+$ff-option-2: 'Roboto Slab', serif;
+$ff-option-3: 'Space Mono', monospace;
+
+// MIXINS
+@mixin flex($justify-content) {
+  display: flex;
+  align-items: center;
+  justify-content: $justify-content;
+}
+
+// global reset
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
 body {
-  background-color: $bg_color_light;
+  font-family: sans-serif;
 }
-main {
-  @include flex(center);
-  flex-direction: column;
-  text-align: center;
-  margin: auto;
-
-  h1 {
-    margin-top: 2em;
-    font-size: 25px;
-    font-weight: bold;
-    color: #d7e0ff;
-  }
-  .btn-container {
-    margin: 2em 7em;
-    @include flex(space-between);
-    border-radius: 2em;
-    padding: 10px;
-    background-color: $bg_color_dark;
-    button {
-      font-size: 12px;
-      border-radius: 2em;
-      padding: 1.3em 2em;
-      background-color: transparent;
-      color: $gray-color;
-      outline: none;
-      border: none;
-      font-weight: bold;
-      cursor: pointer;
-      &:hover {
-        color: white;
-      }
-    }
-  }
-  .stop_clock_container {
-    border-radius: 100%;
-    height: 400px;
-    width: 400px;
-    display: flex;
-    background-color: $bg_color_lighter;
-    box-shadow: -10px -20px 50px 10pxrgba (74, 101, 224, 0.2),
-      10px 20px 50px 10pxrgba (5, 5, 10, 0.75);
-    .inner_container {
-      border-radius: 100%;
-      width: 350px;
-      height: 350px;
-      margin: auto;
-      @include flex(center);
-      background-color: $bg_color_dark;
-      .progress_bar {
-        border-radius: 100%;
-        width: 330px;
-        height: 330px;
-        @include flex(center);
-      }
-      .center_circle {
-        @include flex(center);
-        flex-direction: column;
-        width: 310px;
-        height: 310px;
-        background-color: $bg_color_dark;
-        border-radius: 100%;
-        color: $gray-color;
-        font-weight: bold;
-        .timer {
-          font-size: 100px;
-          display: flex;
-        }
-      }
-      .start_pause_btn {
-        font-size: 25px;
-        letter-spacing: 4px;
-        color: $gray-color;
-        outline: none;
-        border: none;
-        background-color: transparent;
-        width: 100%;
-      }
-    }
-  }
+button {
+  font-family: inherit;
 }

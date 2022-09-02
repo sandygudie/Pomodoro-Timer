@@ -1,10 +1,13 @@
-@import './main';
+@import './base';
 
 .setting_btn {
-  font-size: 20px;
+  font-size: 25px;
   padding: 10px 30px;
   cursor: pointer;
   color: $gray-color;
+  &:hover {
+    color: $bg_color_lighter;
+  }
 }
 .modal {
   position: fixed;
@@ -22,58 +25,87 @@
     transform: translate(-50%, -50%);
     background-color: white;
     padding: 1.5rem 0em;
-    width: 24rem;
+    width: 28rem;
+    height: 26rem;
     border-radius: 1rem;
+    @media (max-width: 625px) {
+      width: 20rem;
+      height: auto;
+      padding-bottom: 3rem ;
+    }
     .modal_heading {
       padding: 0em 1em 1em;
       @include flex(space-between);
       border-bottom: 1px solid $gray-color-100;
       color: $bg_color_dark;
+     
       p {
         font-size: 30px;
         font-weight: bold;
       }
     }
     .modal_content {
-      padding: 1em;
+      padding: 0em 1em;
       .input_container {
         border-bottom: 1px solid $gray-color-100;
-        padding-bottom: 1em;
+        padding: 1.5em 0em;
         .title {
           font-weight: bold;
-
           text-align: left;
           letter-spacing: 3px;
           color: $bg_color_dark;
+          @media (max-width: 625px) {
+            text-align: center;
+            }
         }
         .timer_inputs {
           @include flex(space-between);
           padding-top: 0.5em;
           gap: 5px;
+          @media (max-width: 625px) {
+            flex-direction: column;
+          }
           .input_box {
             text-align: left;
+            @media (max-width: 625px) {
+              @include flex(space-between);
+            }
             label {
               font-size: 12px;
             }
             input {
+              font-weight: bold;
+              background-color: rgb(214, 223, 255);
               margin-top: 5px;
               border-radius: 7px;
               width: 100%;
-              padding: 0.8em 1em;
+              padding: 1em;
               outline: none;
               border: 1px solid $gray-color-100;
+              @media (max-width: 625px) {
+                width: 50%;
+              }
             }
           }
         }
       }
       .font_selection,
       .color_selection {
-        padding: 0.5em 0em;
+        padding: 1em 0em;
         @include flex(space-between);
+        @media (max-width: 625px) {
+         flex-direction: column;
+         }
+        p {
+          font-weight: bold;
+          @media (max-width: 625px) {
+           padding-bottom: 0.5em;
+           }
+        }
         ._types {
           @include flex(space-between);
           padding: 0em 0.5em;
-          gap: 5px;
+          gap: 10px;
           span {
             @include flex(center);
             font-size: 14px;
@@ -93,19 +125,24 @@
       }
     }
     .apply_btn {
-      background-color: pink;
+      font-size: 18px;
+      font-weight: bold;
+      color: #000;
       outline: none;
       border: none;
-      padding: 1em 2em;
+      padding: 0.7em 2.5em;
       border-radius: 20px;
       position: absolute;
       bottom: -15px;
-      left: 40%;
+      left: 35%;
+      @media (max-width: 625px) {
+        left:30%
+        }
     }
   }
 }
 
-.add_animation{
+.add_animation {
   animation: fadeIn;
   animation-duration: 1s;
 }

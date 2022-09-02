@@ -26,9 +26,9 @@ export const timer = {
     states.saveToStorage()
     currentSettings = JSON.parse(states.retriveStorageData())
     this.loadCurrentTimer()
-    this.btnHandler(pomodoro_btn, 1500, 'timer-1')
-    this.btnHandler(shortbreak_btn, 300, 'timer-2')
-    this.btnHandler(longbreak_btn, 900, 'timer-3')
+    this.btnHandler(pomodoro_btn,  currentSettings.setting.length.pomodoro, 'timer-1')
+    this.btnHandler(shortbreak_btn,  currentSettings.setting.length.shortbreak, 'timer-2')
+    this.btnHandler(longbreak_btn,  currentSettings.setting.length.longbreak, 'timer-3')
 
     start_pause_btn.addEventListener('click', () => {
       if (start_pause_btn.innerHTML === 'START') {
@@ -68,7 +68,7 @@ export const timer = {
             : null
         })
       } else {
-        child.style.cssText = ` background-color: transparent; color: #1e213e`
+        child.style.cssText = ` background-color: transparent; color: grey`
       }
       currentSettings.timer.running
         ? (this.ResetTimer(currentSettings.timer.timeleft),
@@ -99,7 +99,7 @@ export const timer = {
         states.current = currentSettings
         states.updateStorage()
       } else {
-        child.style.cssText = ` background-color: transparent; color: #1e213e`
+        child.style.cssText = ` background-color: transparent; color: gray`
       }
     })
   },

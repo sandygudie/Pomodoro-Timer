@@ -43,10 +43,13 @@ export const settings = {
     longMins.value = currentSettings.setting.length.longbreak / 60
 
     // indicate the existing selected font and color
+    applySettingBtn.style.backgroundColor = currentSettings.setting.colorSelected.type
+
     settings.toggleFontOrColor(colorSelection, currentSettings.setting.colorSelected.id)
     settings.toggleFontOrColor(fontSelection, currentSettings.setting.fontSelected.id)
     modal.classList.toggle('show-modal')
     modal.classList.toggle('add_animation')
+   
   },
 
   windowOnClick(event) {
