@@ -1,0 +1,116 @@
+@import './main';
+
+.setting_btn {
+  font-size: 20px;
+  padding: 10px 30px;
+  cursor: pointer;
+  color: $gray-color;
+}
+.modal {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  opacity: 0;
+  visibility: hidden;
+  .modal-box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 1.5rem 0em;
+    width: 24rem;
+    border-radius: 1rem;
+    .modal_heading {
+      padding: 0em 1em 1em;
+      @include flex(space-between);
+      border-bottom: 1px solid $gray-color-100;
+      color: $bg_color_dark;
+      p {
+        font-size: 30px;
+        font-weight: bold;
+      }
+    }
+    .modal_content {
+      padding: 1em;
+      .input_container {
+        border-bottom: 1px solid $gray-color-100;
+        padding-bottom: 1em;
+        .title {
+          font-weight: bold;
+
+          text-align: left;
+          letter-spacing: 3px;
+          color: $bg_color_dark;
+        }
+        .timer_inputs {
+          @include flex(space-between);
+          padding-top: 0.5em;
+          gap: 5px;
+          .input_box {
+            text-align: left;
+            label {
+              font-size: 12px;
+            }
+            input {
+              margin-top: 5px;
+              border-radius: 7px;
+              width: 100%;
+              padding: 0.8em 1em;
+              outline: none;
+              border: 1px solid $gray-color-100;
+            }
+          }
+        }
+      }
+      .font_selection,
+      .color_selection {
+        padding: 0.5em 0em;
+        @include flex(space-between);
+        ._types {
+          @include flex(space-between);
+          padding: 0em 0.5em;
+          gap: 5px;
+          span {
+            @include flex(center);
+            font-size: 14px;
+            font-weight: bold;
+            border-radius: 100%;
+            width: 40px;
+            height: 40px;
+            background-color: $gray-color;
+            .fa-check {
+              display: none;
+            }
+          }
+        }
+      }
+      .font_selection {
+        border-bottom: 1px solid $gray-color-100;
+      }
+    }
+    .apply_btn {
+      background-color: pink;
+      outline: none;
+      border: none;
+      padding: 1em 2em;
+      border-radius: 20px;
+      position: absolute;
+      bottom: -15px;
+      left: 40%;
+    }
+  }
+}
+
+.add_animation{
+  animation: fadeIn;
+  animation-duration: 1s;
+}
+.show-modal {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1);
+}

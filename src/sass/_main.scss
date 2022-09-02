@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;700&family=Roboto+Slab:wght@400;700&family=Space+Mono:wght@400;700&display=swap');
+
+// COLORS
+$bg_color_light: hsl(234, 35%, 18%);
+$bg_color_dark: hsl(234deg, 39%, 14%);
+$bg_color_lighter: hsl(234deg, 39%, 29%);
+$gray-color: hsl(227deg, 100%, 92%);
+$gray-color-100: hsl(227deg 12% 96%);
+
+$clr-nt-lightest: hsl(0deg, 0%, 100%);
+$clr-nt-light: hsl(229deg, 52%, 96%);
+$clr-accent-1: hsl(0deg, 91%, 71%);
+$clr-accent-2: hsl(182deg, 91%, 71%);
+$clr-accent-3: hsl(284deg, 89%, 74%);
+
+// FONTS
+$ff-option-1: 'Kumbh Sans', sans-serif;
+$ff-option-2: 'Roboto Slab', serif;
+$ff-option-3: 'Space Mono', monospace;
+
+// MIXINS
+@mixin flex($justify-content) {
+  display: flex;
+  align-items: center;
+  justify-content: $justify-content;
+}
+
+// global reset
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: sans-serif;
+}
+button {
+  font-family: inherit;
+}
