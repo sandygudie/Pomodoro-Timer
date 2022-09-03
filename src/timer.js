@@ -11,7 +11,7 @@ const btn_container = document.querySelector('.btn-container').children
 let minutes
 let seconds
 let progress = null
-let progressStart = 0
+let progressStart
 let progressEnd
 let speed = 1000
 let secRem = 0
@@ -26,9 +26,9 @@ export const timer = {
     states.saveToStorage()
     currentSettings = JSON.parse(states.retriveStorageData())
     this.loadCurrentTimer()
-    this.btnHandler(pomodoro_btn,  currentSettings.setting.length.pomodoro, 'timer-1')
-    this.btnHandler(shortbreak_btn,  currentSettings.setting.length.shortbreak, 'timer-2')
-    this.btnHandler(longbreak_btn,  currentSettings.setting.length.longbreak, 'timer-3')
+    this.btnHandler(pomodoro_btn, 'timer-1')
+    this.btnHandler(shortbreak_btn, 'timer-2')
+    this.btnHandler(longbreak_btn, 'timer-3')
 
     start_pause_btn.addEventListener('click', () => {
       if (start_pause_btn.innerHTML === 'START') {
@@ -45,12 +45,19 @@ export const timer = {
     })
   },
 
-  btnHandler(element, btnType, id) {
+  btnHandler(element, id) {
     element.addEventListener('click', () => {
       this.toggleBtn(id)
-      start_pause_btn.innerHTML = 'START'
-      this.ResetTimer(btnType)
+      this.loadCurrentTimer()
     })
+  },
+
+  setDefault: () => {
+    start_pause_btn.innerHTML = 'START'
+    currentSettings.timer.timeleft = currentSettings.timer.type.length
+    currentSettings.timer.running = false
+    currentSettings.timer.progressDeg = 0
+    currentSettings.timer.progressLength = 0
   },
 
   loadCurrentTimer() {
@@ -61,7 +68,6 @@ export const timer = {
     Array.from(btn_container).filter((child) => {
       if (child.id === currentSettings.timer.type.id) {
         child.style.cssText = `background-color: ${currentSettings.setting.colorSelected.type}; color: #1e213e`
-
         Object.keys(currentSettings.setting.length).map((key) => {
           key === child.textContent
             ? (currentSettings.timer.type.length = currentSettings.setting.length[key])
@@ -71,8 +77,8 @@ export const timer = {
         child.style.cssText = ` background-color: transparent; color: grey`
       }
       currentSettings.timer.running
-        ? (this.ResetTimer(currentSettings.timer.timeleft),
-          (start_pause_btn.innerHTML = 'RESUME'),
+        ? ((start_pause_btn.innerHTML = 'RESUME'),
+          this.ResetTimer(currentSettings.timer.timeleft),
           (progressBar.style.background = `conic-gradient(
                 ${currentSettings.setting.colorSelected.type} ${progressDegree}deg,
                     #161932 ${progressDegree}deg
@@ -82,7 +88,7 @@ export const timer = {
   },
 
   toggleBtn(id) {
-    currentSettings.timer.running = false
+    this.setDefault()
     Array.from(btn_container).filter((child) => {
       if (child.id === id) {
         child.style.cssText = `background-color: ${currentSettings.setting.colorSelected.type}; color: #1e213e`
@@ -105,9 +111,6 @@ export const timer = {
   },
 
   ResetTimer(time) {
-    console.log(progressStart)
-    console.log(progressDegree)
-
     let minutes = Math.floor(time / 60)
     let seconds = time - minutes * 60
     clearInterval(progress)
@@ -115,42 +118,37 @@ export const timer = {
       start_pause_btn.innerHTML = 'RESUME'
     } else if (start_pause_btn.innerHTML === 'RESUME') {
       progressStart = currentSettings.timer.progressLength
-      //  progressEnd = parseInt(minutes) * 60 + parseInt(seconds)
-    } else {
-      start_pause_btn.innerHTML = 'START'
+      Object.keys(currentSettings.setting.length).map((key) => {
+        key === currentSettings.timer.type.name
+          ? (progressEnd = currentSettings.setting.length[key])
+          : null
+      })
+    } else if (start_pause_btn.innerHTML === 'START') {
       progressBar.style.background = '#161932'
       currentSettings.timer.progressLength = 0
-      progressStart = 0
       progressEnd = parseInt(minutes) * 60 + parseInt(seconds)
     }
     progress = null
+    timer.displayTimerText(minutes, seconds)
+  },
 
-    // progressDegree;
-    // normally more than 2 length mins should be convert to hr
-    timer_mins.innerHTML = minutes.toString().length >= 2 ? minutes : `0${minutes}`
-    timer_sec.innerHTML = seconds.toString().length >= 2 ? seconds : `0${seconds}`
+  displayTimerText(mins, secs) {
+    timer_mins.innerHTML = mins.toString().length >= 2 ? mins : `0${mins}`
+    timer_sec.innerHTML = secs.toString().length >= 2 ? secs : `0${secs}`
   },
 
   progressTrack() {
+    currentSettings.timer.running = true
     let degTravel = 360 / progressEnd
     progressStart++
     secRem = Math.floor((progressEnd - progressStart) % 60)
     minRem = Math.floor((progressEnd - progressStart) / 60)
-
-    console.log(progressStart)
-    console.log(progressEnd)
-    timer_sec.innerHTML = secRem.toString().length == 2 ? secRem : `0${secRem}`
-    timer_mins.innerHTML = minRem.toString().length >= 2 ? minRem : `0${minRem}`
+    timer.displayTimerText(minRem, secRem)
     progressDegree = progressStart * degTravel
-    // console.log(progressStart)
-    // console.log(progressDegree)
-    // console.log (degTravel)
     progressBar.style.background = `conic-gradient(
       ${currentSettings.setting.colorSelected.type} ${progressDegree}deg,
           #161932 ${progressDegree}deg
         )`
-    currentSettings.timer.running = true
-
     timeRem = parseInt(timer_mins.innerHTML) * 60 + parseInt(timer_sec.innerHTML)
     currentSettings.timer = {
       ...currentSettings.timer,

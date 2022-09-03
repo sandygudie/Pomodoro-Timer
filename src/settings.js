@@ -98,6 +98,7 @@ export const settings = {
     currentSettings.setting = { ...currentSettings.setting, ...formSettings }
     states.current = currentSettings
     states.updateStorage()
+    timer.setDefault()
     timer.loadCurrentTimer()
     settings.toggleModal()
   },

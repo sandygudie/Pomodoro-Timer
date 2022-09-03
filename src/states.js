@@ -38,12 +38,6 @@ export let states = {
     localStorage.setItem('currentTimer', JSON.stringify(states.current))
   },
 
-  setDefault: () => {
-    states.current.timer.timeLeft = states.current.timer.type.length
-    states.current.timer.running = false
-    states.current.timer.completed = false
-  },
-
   retriveStorageData() {
     let savedStates = localStorage.getItem('currentTimer')
     if (savedStates !== null) {
