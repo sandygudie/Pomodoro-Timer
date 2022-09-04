@@ -1,6 +1,8 @@
 # Pomodoro-Timer
 A pomodoro timer with control settings. 
 ### Link: https://pomodoro-stopwatch.netlify.app/
+![image](https://user-images.githubusercontent.com/54219127/188305172-9cb5d4df-5637-41be-a517-41f7db73db88.png)
+
 
 
 ### This is a solution to the [tasks](https://www.frontendmentor.io/challenges/pomodoro-app-KBFnycJ6G) on Frontend Mentor.
