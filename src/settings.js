@@ -19,7 +19,7 @@ export const settings = {
     setting_btn.addEventListener('click', this.toggleModal)
     closeButton.addEventListener('click', this.toggleModal)
     window.addEventListener('click', this.windowOnClick)
-   applySettingBtn.addEventListener('click', this.applySettings)
+    applySettingBtn.addEventListener('click', this.applySettings)
 
     fontSelection.addEventListener('click', (e) => {
       if (e.target.tagName == 'SPAN') {
@@ -49,7 +49,6 @@ export const settings = {
     settings.toggleFontOrColor(fontSelection, currentSettings.setting.fontSelected.id)
     modal.classList.toggle('show-modal')
     modal.classList.toggle('add_animation')
-   
   },
 
   windowOnClick(event) {
@@ -62,15 +61,15 @@ export const settings = {
     element === colorSelection
       ? Array.from(element.children).filter((child) => {
           child.id === id
-            ? (child.lastChild.style.display = 'block',
-            currentSettings.setting.colorSelected.id = id )
+            ? ((child.lastChild.style.display = 'block'),
+              (currentSettings.setting.colorSelected.id = id))
             : (child.lastChild.style.display = 'none')
         })
       : element === fontSelection
       ? Array.from(element.children).filter((child) => {
           child.id === id
-            ? (child.style.cssText += `background-color:black; color:white`,
-            currentSettings.setting.fontSelected.id = id )
+            ? ((child.style.cssText += `background-color:black; color:white`),
+              (currentSettings.setting.fontSelected.id = id))
             : (child.style.backgroundColor = 'hsl(227deg, 100%, 92%)')
         })
       : null
@@ -87,7 +86,7 @@ export const settings = {
         longbreak: longMinsVal,
       },
       colorSelected: {
-        id:  currentSettings.setting.colorSelected.id,
+        id: currentSettings.setting.colorSelected.id,
         type: selected_color || currentSettings.setting.colorSelected.type,
       },
       fontSelected: {
@@ -103,6 +102,3 @@ export const settings = {
     settings.toggleModal()
   },
 }
-
- 
-

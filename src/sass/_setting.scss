@@ -31,14 +31,22 @@
     @media (max-width: 625px) {
       width: 20rem;
       height: auto;
-      padding-bottom: 3rem ;
+      padding-bottom: 3rem;
     }
     .modal_heading {
       padding: 0em 1em 1em;
       @include flex(space-between);
       border-bottom: 1px solid $gray-color-100;
       color: $bg_color_dark;
-     
+      .close-button {
+        padding: 0.8em;
+        cursor: pointer;
+        background-color: transparent;
+        border-radius: 50%;
+        &:hover {
+          background-color: $gray-color-100;
+        }
+      }
       p {
         font-size: 30px;
         font-weight: bold;
@@ -56,7 +64,7 @@
           color: $bg_color_dark;
           @media (max-width: 625px) {
             text-align: center;
-            }
+          }
         }
         .timer_inputs {
           @include flex(space-between);
@@ -94,13 +102,13 @@
         padding: 1em 0em;
         @include flex(space-between);
         @media (max-width: 625px) {
-         flex-direction: column;
-         }
+          flex-direction: column;
+        }
         p {
           font-weight: bold;
           @media (max-width: 625px) {
-           padding-bottom: 0.5em;
-           }
+            padding-bottom: 0.5em;
+          }
         }
         ._types {
           @include flex(space-between);
@@ -114,6 +122,7 @@
             width: 40px;
             height: 40px;
             background-color: $gray-color;
+            cursor: pointer;
             .fa-check {
               display: none;
             }
@@ -136,8 +145,8 @@
       bottom: -15px;
       left: 35%;
       @media (max-width: 625px) {
-        left:30%
-        }
+        left: 30%;
+      }
     }
   }
 }
