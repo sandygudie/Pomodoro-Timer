@@ -2,12 +2,14 @@
 
 body {
   background-color: $bg_color_light;
+  height:100vh
 }
 main {
   @include flex(center);
   flex-direction: column;
   text-align: center;
   margin: auto;
+  height:100%;
 
   h1 {
     margin-top: 1em;
